@@ -1,0 +1,23 @@
+name: Đúc Ngọc Trâm APK Tối Ưu
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lấy mã nguồn
+        uses: actions/checkout@v4
+      - name: Bật lò luyện Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          command: buildozer android debug
+          buildozer_version: master
+      - name: Xuất xưởng file APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: NgocTram-App-Hoan-Thien
+          path: bin/*.apk
+
