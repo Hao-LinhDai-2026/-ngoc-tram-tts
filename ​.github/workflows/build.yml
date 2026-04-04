@@ -1,4 +1,4 @@
-name: Đúc Ngọc Trâm APK Tối Ưu
+ name: Đúc Ngọc Trâm APK Tối Ưu
 on:
   push:
     branches: [ main ]
