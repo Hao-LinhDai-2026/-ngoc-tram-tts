@@ -1,0 +1,21 @@
+name: Duc Ngoc Tram APK
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Lay ma nguon
+        uses: actions/checkout@v4
+      - name: Build voi Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        with:
+          command: buildozer android debug
+      - name: Xuat xuong APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: NgocTram-App
+          path: bin/*.apk
+
