@@ -1,36 +1,20 @@
- name: Đúc Ngọc Trâm APK Tối Ưu
+name: Duc Ngoc Tram APK
 on:
   push:
     branches: [ main ]
   workflow_dispatch:
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Lấy mã nguồn
+      - name: Lay ma nguon
         uses: actions/checkout@v4
-
-      - name: Thiết lập bộ nhớ đệm (Tăng tốc)
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cache/pip
-            ~/.gradle
-            ~/.buildozer
-          key: ${{ runner.os }}-buildozer-${{ hashFiles('buildozer.spec') }}
-
-      - name: Bật lò luyện Buildozer (Bản Chuẩn)
+      - name: Build voi Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
-        id: buildozer
         with:
           command: buildozer android debug
-          buildozer_version: master
-
-      - name: Xuất xưởng file APK (Bản hoàn thiện)
+      - name: Xuat xuong APK
         uses: actions/upload-artifact@v4
         with:
-          name: NgocTram-App-Hoan-Thien
+          name: NgocTram-App
           path: bin/*.apk
-          retention-days: 7
-
